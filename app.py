@@ -117,19 +117,32 @@ with col1:
 with col2:
     st.subheader("Upscaled Image")
     if 'output_image' in st.session_state and st.session_state['output_image'] is not None:
-        st.image(st.session_state['output_image'], caption="Upscaled Image", use_container_width=True)
+        st.image(st.session_state['output_image'], caption="Upscaled Image", use_column_width=True)
         
         st.markdown("---") # Horizontal line before download button
-        # Optional: Download button for the output image
+        
+        # --- CHANGES START HERE ---
+        # Create an in-memory buffer
+        buf = io.BytesIO()
+        # Save the PIL Image to the buffer in PNG format
+        st.session_state['output_image'].save(buf, format="PNG")
+        # Get the byte value from the buffer
+        image_bytes_for_download = buf.getvalue()
+        # --- CHANGES END HERE ---
+
+        # Use the stored original file name for download
+        download_file_name = f"upscaled_{st.session_state.get('input_image_name', 'image').split('.')[0]}_{selected_size}.png"
+        
         st.download_button(
             label="Download Upscaled Image",
-            data=st.session_state['output_image'].tobytes(),
-            file_name=f"upscaled_{uploaded_file.name if uploaded_file else 'image'}_{selected_size}.png",
-            mime="image/png",
+            data=image_bytes_for_download, # Use the correctly formatted bytes
+            file_name=download_file_name,
+            mime="image/png", # Specify the MIME type to match the format
             use_container_width=True
         )
     else:
         st.info("Your upscaled image will appear here after processing.")
+
 
 st.write("---")
 
