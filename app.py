@@ -15,11 +15,6 @@ optimized for better results, especially on faces. Choose your desired upscale f
 and transform your low-resolution images into high-quality visuals.
 """)
 
-st.markdown("""
-<div style='text-align: center; margin-top: 20px;'>
-Developed by <strong>Rajat Parihar</strong>
-</div>
-""", unsafe_allow_html=True)
 
 # --- Model Loading (Cached) ---
 @st.cache_resource
@@ -137,8 +132,9 @@ with col2:
         st.info("Your upscaled image will appear here after processing.")
 
 st.write("---")
+
 st.markdown("""
-<div style='text-align: center; font-size: small; color: grey;'>
-Note: Upscaling very large images, especially with the 8x factor, may require significant computational resources (GPU memory).
+<div style='text-align: center; margin-top: 20px;'>
+Developed by <strong>Rajat Parihar</strong>
 </div>
 """, unsafe_allow_html=True)
