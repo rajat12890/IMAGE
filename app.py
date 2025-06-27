@@ -90,7 +90,7 @@ with col1:
     input_image = None
     if uploaded_file is not None:
         input_image = Image.open(uploaded_file)
-        st.image(input_image, caption="Original Image", use_column_width=True)
+        st.image(input_image, caption="Original Image", use_container_width=True)
     else:
         st.info("Upload an image (PNG, JPG, JPEG, WEBP) to get started!")
 
@@ -117,7 +117,7 @@ with col1:
 with col2:
     st.subheader("Upscaled Image")
     if 'output_image' in st.session_state and st.session_state['output_image'] is not None:
-        st.image(st.session_state['output_image'], caption="Upscaled Image", use_column_width=True)
+        st.image(st.session_state['output_image'], caption="Upscaled Image", use_container_width=True)
         
         st.markdown("---") # Horizontal line before download button
         # Optional: Download button for the output image
