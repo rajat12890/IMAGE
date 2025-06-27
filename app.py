@@ -3,7 +3,7 @@ import torch
 from PIL import Image
 from RealESRGAN import RealESRGAN
 import os
-
+import io 
 # Set page configuration for a wider layout
 st.set_page_config(layout="centered", page_title="Image Upscaler Powered by Real-ESRGAN")
 
